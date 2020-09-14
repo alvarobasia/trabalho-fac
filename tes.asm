@@ -1,5 +1,4 @@
- .data
- 	alloc: .space 40
+  .data
         Hello: .asciiz "======>Bem-vindo ao progama de busca sequêncial<=====\n"
 	Introduction: .asciiz "*****Digite 10 valores para serem armazenados no vetor*****\n"
 	number: .asciiz "Digite o "
@@ -11,6 +10,8 @@
 	Get_2: .asciiz " FOI encontrado no vetor na posição "
 	Get_3: .asciiz " !!!\n"
 	N_Get: .asciiz " NÃO FOI encontrado no vetor !\n"
+	#.align 2
+	alloc: .space 4
 .text
 	li $v0,4                  
 	la $a0, Hello         
@@ -56,7 +57,7 @@ get_numbers:
 	
         Loop: 
 	
-	sle $t1, $t0, 9
+	sle $t1, $t0, 10
 	
 	bne $t1, 1, Out_get_numbers
 	
@@ -81,8 +82,8 @@ get_numbers:
 	move $t2, $v0
 	
 	sll $t3, $t0,2
-	add $t3, $s0, $t3
-	sw $t2, ($t3)
+	add $t3, $t3, $s0
+	sw $t2, 0($t3)
 	
 	addi $t0, $t0,1
 	
